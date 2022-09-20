@@ -21,6 +21,7 @@ pipeline {
                     steps {
                         sh 'podman run -it --rm localhost/$IMAGE_NAME which rstudio'
                         sh 'podman run -it --rm localhost/$IMAGE_NAME R -q -e "getRversion() >= \\"4.1.3\\"" | tee /dev/stderr | grep -q "TRUE"'
+                        sh 'podman run -it --rm localhost/$IMAGE_NAME find /usr/share -type f -name lmodern.sty'
                         sh 'podman run -it --rm localhost/$IMAGE_NAME R -e "library(\"stats\");library(\"datasets\");library(\"graphics\");library(\"tidyverse\");library(\"mosaic\");library(\"mosaicCore\");library(\"mosaicData\");library(\"openintro\");library(\"palmerpenguins\");library(\"RColorBrewer\");library(\"knitr\");library(\"markdown\");library(\"rmarkdown\");library(\"car\");library(\"carData\");library(\"cherryblossom\");library(\"datasets\");library(\"DBI\");library(\"dbplyr\");library(\"network\");library(\"DT\");library(\"emo\");library(\"fivethirtyeight\");library(\"gargle\");library(\"Lock5Data\");library(\"MASS\")"'
                         sh 'podman run -d --name=$IMAGE_NAME --rm -p 8888:8888 localhost/$IMAGE_NAME start-notebook.sh --NotebookApp.token="jenkinstest"'
                         sh 'sleep 10 && curl -v http://localhost:8888/rstudio?token=jenkinstest 2>&1 | grep -P "HTTP\\S+\\s[1-3][0-9][0-9]\\s+[\\w\\s]+\\s*$"'
