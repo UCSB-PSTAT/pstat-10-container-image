@@ -1,9 +1,3 @@
-# Container image source for <course>
-Info here about where to find and run this image.
-
-# Template instructions (**DELETE THIS SECTION**)
-
-* Uncomment and add necessary libraries to Containerfile
-* mv Jenkinsfile.template to Jenkinsfile
-* Update image variable and add tests to Jenkinsfile
+# Container image source for PSTAT-10
+You can obtain this image from docker.io by pulling the image with `podman pull docker.io/ucsb/pstat-10`. Supported tags for this image can be found [here](https://hub.docker.com/r/ucsb/pstat-10/tags)
 
