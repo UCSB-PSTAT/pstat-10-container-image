@@ -18,8 +18,10 @@ RUN conda install -y -c conda-forge \
     r-dt \
     r-fivethirtyeight \
     r-gargle \
-    r-kableextra \ 
+    r-ggally \
+    r-kableextra \
     r-knitr \
+    r-leaflet \
     r-learnr \
     r-mass \
     r-mosaic \
@@ -32,6 +34,7 @@ RUN conda install -y -c conda-forge \
     r::r-lock5data \
     r-rmarkdown \
     r-rsqlite \
+    r-skimr \
     r-tidyverse
     
 RUN R -e "install.packages(c( 'tutorial.helpers', 'RSQLite'), repos = 'https://cloud.r-project.org/', Ncpus = parallel::detectCores())"
