@@ -32,7 +32,7 @@ RUN conda install -y -c conda-forge \
     r-skimr \
     r-tidyverse
     
-RUN R -e "install.packages(c( 'cherryblossom',' Lock5Data', 'openintro', 'palmerpenguins', 'tutorial.helpers', 'RSQLite'), repos = 'https://cloud.r-project.org/', Ncpus = parallel::detectCores())"
+RUN R -e "install.packages(c( 'cherryblossom','Lock5Data', 'openintro', 'palmerpenguins', 'tutorial.helpers', 'RSQLite'), repos = 'https://cloud.r-project.org/', Ncpus = parallel::detectCores())"
 
 RUN R -e 'devtools::install_github("hadley/emo")'
 
