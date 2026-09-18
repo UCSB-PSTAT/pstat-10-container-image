@@ -8,7 +8,7 @@ RUN apt update && \
     apt install -y texlive-full lmodern libbz2-dev nano && \
     apt clean
 
-RUN conda install -y -c conda-forge \
+RUN mamba install -y -c conda-forge \
     markdown \
     r-car \
     r-cardata \
@@ -30,11 +30,11 @@ RUN conda install -y -c conda-forge \
     r-rcolorbrewer \
     r-rmarkdown \
     r-skimr \
-    r-tidyverse
+    r-tidyverse &&\
+    conda clean -afy &&\
+    /usr/local/bin/fix-permissions "${CONDA_DIR}" || true
     
-RUN R -e "install.packages(c( 'cherryblossom','Lock5Data', 'openintro', 'palmerpenguins', 'tutorial.helpers', 'RSQLite'), repos = 'https://cloud.r-project.org/', Ncpus = parallel::detectCores())"
-
-RUN R -e 'devtools::install_github("hadley/emo")'
+RUN R -q -e "install.packages(c( 'cherryblossom','Lock5Data', 'openintro', 'palmerpenguins', 'tutorial.helpers', 'RSQLite'), repos = 'https://cloud.r-project.org/', Ncpus = parallel::detectCores())" &&\ 
+    R -q -e 'pak::pak("hadley/emo")'
 
 USER $NB_USER
-
