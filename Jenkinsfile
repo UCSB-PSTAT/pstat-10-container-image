@@ -5,7 +5,7 @@ pipeline {
     }
     environment {
         IMAGE_NAME = 'pstat-10'
-        CONTAINER_REGISTRY  = 'registry.cloud.college.ucsb.edu':
+        CONTAINER_REGISTRY  = 'registry.cloud.college.ucsb.edu'
     }
     stages {
         stage('Build Test Deploy') {
